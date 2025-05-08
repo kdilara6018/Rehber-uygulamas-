@@ -1,0 +1,41 @@
+package com.example.kisiler_uygulamasi.ui.fragment
+
+import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
+import com.example.kisiler_uygulamasi.R
+import com.example.kisiler_uygulamasi.databinding.FragmentAnasayfaBinding
+import com.example.kisiler_uygulamasi.databinding.FragmentKisiDetayBinding
+
+class KisiDetayFragment : Fragment() {
+
+    private lateinit var binding : FragmentKisiDetayBinding
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        binding= FragmentKisiDetayBinding.inflate(inflater,container,false)
+
+val bundle: KisiDetayFragmentArgs by navArgs()
+        val gelenKisi= bundle.kisi
+        binding.editTextKisiAd.setText(gelenKisi.kisi_ad)
+        binding.editTextKisiTel.setText(gelenKisi.kisi_tel)
+        binding.buttonKaydet2.setOnClickListener {
+            val kisi_ad=binding.editTextKisiAd.text.toString()
+            val kisi_tel=binding.editTextKisiTel.text.toString()
+            guncelle(gelenKisi.kisi_id,kisi_ad,kisi_tel)
+        }
+        return binding.root
+    }
+
+    fun guncelle(kisi_id:Int,kisi_adi:String,kisi_tel:String){
+        Log.e("kişi güncelle ","$kisi_id - $kisi_adi - $kisi_tel")
+    }
+    }
